@@ -12,13 +12,13 @@ public class HeadFirstSpringBootApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(HeadFirstSpringBootApplication.class, args);
+        printInfo(context);
+    }
 
+    private static void printInfo(ConfigurableApplicationContext context) {
         ConfigurableEnvironment environment = context.getEnvironment();
-
         String port = environment.getProperty("server.port");
-
-        System.out.println("Port:" + port);
-
+        System.out.println("Port:" + port);//null 哪里出了问题?
     }
 
 }
