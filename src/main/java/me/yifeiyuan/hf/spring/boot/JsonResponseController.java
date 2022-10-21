@@ -1,7 +1,10 @@
 package me.yifeiyuan.hf.spring.boot;
 
 
+import lombok.Data;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Serializable;
@@ -30,7 +33,7 @@ public class JsonResponseController {
         return list;
     }
 
-    @RequestMapping("/json/list-object")
+    @RequestMapping("/json/listObject")
     public List<Student> listObjectResult() {
         List<Student> list = new ArrayList<>();
         Student student = new Student();
@@ -39,14 +42,15 @@ public class JsonResponseController {
         list.add(student);
 
         Student student2 = new Student();
-        student.name = "Student B";
-        student.age = 11;
+        student2.name = "Student B";
+        student2.age = 11;
         list.add(student2);
 
         return list;
     }
 
-    @RequestMapping("/json/object")
+    @ResponseBody
+    @GetMapping("/json/object")
     public Student objectResult() {
         Student student = new Student();
         student.name = "Student A";
@@ -54,8 +58,9 @@ public class JsonResponseController {
         return student;
     }
 
+    @Data
     static class Student implements Serializable {
-        String name;
-        int age;
+         String name;
+      int age;
     }
 }
